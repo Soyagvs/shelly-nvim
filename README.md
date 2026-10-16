@@ -6,6 +6,8 @@
 
 Neovim support for [Shelly](https://github.com/Soyagvs/shelly), including filetype support and Shelly Language Server integration.
 
+For canonical helper and date-format details, see the [helper documentation](https://github.com/Soyagvs/shelly/blob/main/docs/helpers.md) and [date-formatting documentation](https://github.com/Soyagvs/shelly/blob/main/docs/date-formatting.md).
+
 ## Quick path: Lazy.nvim
 
 1. Install Shelly separately by downloading and installing its release archive from the [Shelly releases](https://github.com/Soyagvs/shelly/releases) page.

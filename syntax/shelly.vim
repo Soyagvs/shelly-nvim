@@ -34,7 +34,7 @@ syntax keyword shellyHelper len join sort reverse unique keys values
 syntax keyword shellyHelper toNumber toString isEmpty isNumber isText isList isDict
 syntax keyword shellyHelper basename dirname extension withoutExtension
 syntax keyword shellyHelper isFile isDir tempFile tempDir size
-syntax keyword shellyHelper now today random randomInt jsonParse jsonStringify
+syntax keyword shellyHelper now today random randomInt jsonParse jsonStringify substring padLeft padRight formatDate
 
 " Identifiers and literals.
 syntax match shellyFunction /\v<fn\s+\zs[A-Za-z_][A-Za-z0-9_]*/
