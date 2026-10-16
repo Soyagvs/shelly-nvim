@@ -1,0 +1,51 @@
+name: Update release badges
+
+on:
+  release:
+    types: [published]
+  schedule:
+    - cron: "17 3 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update-badges:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Update badge payloads
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPOSITORY: ${{ github.repository }}
+        run: |
+          release_json="$(gh api "repos/${REPOSITORY}/releases/latest" 2>/dev/null || true)"
+          if printf '%s' "$release_json" | jq -e 'type == "object" and (.tag_name | type == "string")' >/dev/null 2>&1; then
+            tag="$(printf '%s' "$release_json" | jq -r '.tag_name')"
+            downloads="$(printf '%s' "$release_json" | jq '[.assets[]?.download_count // 0] | add // 0')"
+          else
+            tag="unreleased"
+            downloads="0"
+          fi
+
+          jq -n --arg message "$tag" \
+            '{schemaVersion: 1, label: "release", message: $message, color: "lightgrey"}' \
+            > .github/badges/release.json
+          jq -n --arg message "$downloads" \
+            '{schemaVersion: 1, label: "downloads", message: $message, color: "lightgrey"}' \
+            > .github/badges/downloads.json
+
+      - name: Commit changed badge payloads
+        run: |
+          if git diff --quiet -- .github/badges/release.json .github/badges/downloads.json; then
+            echo "Badge payloads are unchanged."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add .github/badges/release.json .github/badges/downloads.json
+          git commit -m "chore: update release badges"
+          git push
