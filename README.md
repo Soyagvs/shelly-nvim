@@ -1,3 +1,5 @@
+<img width="2056" height="765" alt="Shelly_ Cuervo Neón para Neovim" src="https://github.com/user-attachments/assets/ad2e24e4-f726-4f7c-af2e-cbb0f38c7b86" />
+
 # shelly-nvim
 
 Neovim support for [Shelly](https://github.com/Soyagvs/shelly), including filetype support and Shelly Language Server integration.
