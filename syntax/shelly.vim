@@ -25,7 +25,11 @@ syntax keyword shellySpecial first last contained
 " Built-in commands and predicates.
 syntax keyword shellyCommand shellout shellin ask command call choose log
 syntax keyword shellyCommand create copy move rename remove read write append prepend files
-syntax match shellyPredicate /\v<(exists|contains|hasArg)>/
+syntax match shellyPredicate /\v<(exists|contains|hasArg|matches)>/
+
+" Regex literals: escaped characters and bracket expressions may contain slashes.
+" Requiring a closing slash keeps unterminated literals out of this match.
+syntax match shellyRegexLiteral /\/\%(\[[^]]*\]\|\\.\|[^\\\/[]\)*\//
 
 " Standard helpers.
 syntax keyword shellyHelper arg args
@@ -66,6 +70,7 @@ highlight default link shellyNumber Number
 highlight default link shellyOperator Operator
 highlight default link shellyDelimiter Delimiter
 highlight default link shellyString String
+highlight default link shellyRegexLiteral String
 highlight default link shellyMultilineString String
 highlight default link shellyInterpolation Special
 highlight default link shellyListSelector Special

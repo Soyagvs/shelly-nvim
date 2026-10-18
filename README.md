@@ -25,7 +25,7 @@ For canonical helper and date-format details, see the [helper documentation](htt
 
 4. Restart Neovim and open a Shelly file.
 
-You do not need to configure [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig). `shelly-nvim` handles the Shelly LSP integration when `shelly-lsp` is available on `PATH`.
+You do not need to configure [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig). `shelly-nvim` launches `shelly-lsp` when it is available on `PATH`. Diagnostics, completion, and validation for Shelly recursive `**` file globs are provided by the server; the plugin does not expand globs itself.
 
 ## Verify the installation
 
