@@ -7,7 +7,7 @@ Feature: document the approved `v0.1.2` release for the Shelly Neovim plugin.
 - Release `v0.1.2` from the current main branch.
 - Preserve the existing README guidance for `shelly-lsp` and recursive `**` file globs.
 - Do not attach binary assets: Neovim plugin managers install the tagged Git repository directly.
-- Keep release operations separate from this documentation change; tagging, publishing, and pushing are not performed here.
+- Publish the release from the current `main` branch without binary assets; plugin managers install the tagged repository directly.
 
 ## User-facing changes
 
@@ -19,4 +19,9 @@ Feature: document the approved `v0.1.2` release for the Shelly Neovim plugin.
 
 - [x] Add the `v0.1.2` changelog entry.
 - [x] Preserve and review the existing README release guidance.
-- [ ] Tag `v0.1.2` and publish the GitHub release separately.
+- [x] Tag `v0.1.2`, push `main`, and publish the GitHub release.
+
+## Evidence
+
+- Committed on `main`: `60889f7` (`feat(syntax): highlight regex predicates`).
+- Published release: https://github.com/Soyagvs/shelly-nvim/releases/tag/v0.1.2
