@@ -25,7 +25,7 @@ For canonical helper and date-format details, see the [helper documentation](htt
 
 4. Restart Neovim and open a Shelly file.
 
-You do not need to configure [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig). `shelly-nvim` launches `shelly-lsp` when it is available on `PATH`. Diagnostics, completion, and validation for Shelly recursive `**` file globs are provided by the server; the plugin does not expand globs itself.
+You do not need to configure [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig). `shelly-nvim` launches `shelly-lsp` when it is available on `PATH`. The shared `shelly-lsp` capabilities include diagnostics, completion, hover, definition, references, document symbols, workspace symbols, and conservative rename. Validation for Shelly recursive `**` file globs is provided by the server; the plugin does not expand globs itself.
 
 ## Verify the installation
 
@@ -61,7 +61,7 @@ command -v shelly-lsp
 
 - **You installed a new release but Neovim still uses the old one:** restart Neovim after updating and check the resolved executable with `command -v`.
 
-For Shelly-specific behavior and LSP details, see the [Shelly documentation](https://github.com/Soyagvs/shelly) and the [LSP guide](https://github.com/Soyagvs/shelly/blob/main/docs/lsp.md).
+For Shelly-specific behavior and LSP details, see the [Shelly documentation](https://github.com/Soyagvs/shelly) and the [LSP guide](https://github.com/Soyagvs/shelly/blob/main/docs/lsp.md). For the other editor integration, see the [Shelly VS Code integration](https://github.com/Soyagvs/shelly-vscode).
 
 ## Manual installation with Neovim's native package loader
 
