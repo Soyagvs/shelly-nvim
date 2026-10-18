@@ -24,4 +24,4 @@ Feature: document the approved `v0.1.2` release for the Shelly Neovim plugin.
 ## Evidence
 
 - Committed on `main`: `60889f7` (`feat(syntax): highlight regex predicates`).
-- Published release: https://github.com/Soyagvs/shelly-nvim/releases/tag/v0.1.2
+- Published release on 2026-10-18: https://github.com/Soyagvs/shelly-nvim/releases/tag/v0.1.2
