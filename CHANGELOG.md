@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.1.3] - 2026-10-19
+
+### Added
+
+- Add syntax highlighting and support for Shelly `watch`/`wait` processes.
+
 ## [0.1.2] - 2026-10-18
 
 ### Added
