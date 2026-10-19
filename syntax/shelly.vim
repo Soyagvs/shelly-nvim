@@ -23,7 +23,7 @@ syntax keyword shellyBoolean true false
 syntax keyword shellySpecial first last contained
 
 " Built-in commands and predicates.
-syntax keyword shellyCommand shellout shellin ask command call choose log
+syntax keyword shellyCommand shellout shellin ask command call choose log watch wait
 syntax keyword shellyCommand create copy move rename remove read write append prepend files
 syntax match shellyPredicate /\v<(exists|contains|hasArg|matches)>/
 

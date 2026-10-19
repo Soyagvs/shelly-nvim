@@ -8,6 +8,15 @@ Neovim support for [Shelly](https://github.com/Soyagvs/shelly), including filety
 
 For canonical helper and date-format details, see the [helper documentation](https://github.com/Soyagvs/shelly/blob/main/docs/helpers.md) and [date-formatting documentation](https://github.com/Soyagvs/shelly/blob/main/docs/date-formatting.md).
 
+Syntax highlighting supports the process watcher form `watch <program> <args...> -> $line ... end` and bare `wait`.
+
+```shelly
+watch ping example.com -> $line
+  log $line
+end
+wait
+```
+
 ## Quick path: Lazy.nvim
 
 1. Install Shelly separately by downloading and installing its release archive from the [Shelly releases](https://github.com/Soyagvs/shelly/releases) page.
