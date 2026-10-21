@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.2.0]
+
+### Added
+
+- Add syntax highlighting for archive v1 commands.
+
 ## [0.1.4] - 2026-10-21
 
 ### Added
@@ -21,5 +27,6 @@
 - Highlight the `matches` predicate.
 - Document that recursive `**` file-glob diagnostics, completion, and validation are provided by `shelly-lsp`.
 
+[0.2.0]: https://github.com/Soyagvs/shelly-nvim/releases/tag/v0.2.0
 [0.1.4]: https://github.com/Soyagvs/shelly-nvim/releases/tag/v0.1.4
 [0.1.2]: https://github.com/Soyagvs/shelly-nvim/releases/tag/v0.1.2
