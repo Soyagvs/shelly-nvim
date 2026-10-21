@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.4] - 2026-10-21
+
+### Added
+
+- Configure the LSP workspace root from project markers.
+- Add HTTP syntax highlighting.
+
 ## [0.1.3] - 2026-10-19
 
 ### Added
@@ -14,4 +21,5 @@
 - Highlight the `matches` predicate.
 - Document that recursive `**` file-glob diagnostics, completion, and validation are provided by `shelly-lsp`.
 
+[0.1.4]: https://github.com/Soyagvs/shelly-nvim/releases/tag/v0.1.4
 [0.1.2]: https://github.com/Soyagvs/shelly-nvim/releases/tag/v0.1.2
