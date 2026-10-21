@@ -8,7 +8,7 @@ Neovim support for [Shelly](https://github.com/Soyagvs/shelly), including filety
 
 For canonical helper and date-format details, see the [helper documentation](https://github.com/Soyagvs/shelly/blob/main/docs/helpers.md) and [date-formatting documentation](https://github.com/Soyagvs/shelly/blob/main/docs/date-formatting.md).
 
-Syntax highlighting supports the process watcher form `watch <program> <args...> -> $line ... end` and bare `wait`.
+Syntax highlighting supports the process watcher form `watch <program> <args...> -> $line ... end`, bare `wait`, and HTTP v1 requests with `http`, methods (`GET`, `POST`, `PUT`, `PATCH`, `DELETE`, `HEAD`, `OPTIONS`), and options (`headers`, `body`, `timeout`, `maxBytes`).
 
 ```shelly
 watch ping example.com -> $line
@@ -36,6 +36,23 @@ wait
 
 You do not need to configure [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig). `shelly-nvim` launches `shelly-lsp` when it is available on `PATH`. The verified shared capabilities are: diagnostics, completion, hover, definition, references, document symbols, workspace symbols, and conservative rename. Validation for Shelly recursive `**` file globs is provided by the server; the plugin does not expand globs itself.
 
+### Workspace roots
+
+The LSP workspace root is the nearest parent directory containing `Shelly.toml`; if none exists, the nearest parent containing `.git` is used. If neither marker is found, the Shelly file's directory is used. This keeps related files in one workspace while preserving useful behavior for standalone files.
+
+The defaults can be overridden when needed:
+
+```lua
+require("shelly.lsp").setup({
+  cmd = { "shelly-lsp" },
+  root_markers = { "Shelly.toml", ".git" },
+  -- root_dir may also be a function(bufnr, file_directory).
+  -- root_dir = "/path/to/workspace",
+})
+```
+
+`setup` is optional; the shown command and markers are the defaults. Configure it before opening Shelly buffers. The first item in `cmd` is also used for executable detection, so a custom executable can be used even when `shelly-lsp` is not installed.
+
 ## Verify the installation
 
 Inside Neovim, check the filetype and recent messages:
@@ -61,7 +78,7 @@ command -v shelly-lsp
 ## Troubleshooting
 
 - **The filetype is empty or incorrect:** confirm that the plugin is loaded at startup (`lazy = false`), then reopen the file and inspect `:messages`.
-- **The language server does not start:** run `command -v shelly-lsp` and `shelly-lsp` in the same environment that launches Neovim. Fix `PATH` before changing Neovim configuration.
+- **The language server does not start:** run `command -v shelly-lsp` and `shelly-lsp` in the same environment that launches Neovim, or verify that the first item in your configured `cmd` is executable. Fix `PATH` before changing Neovim configuration.
 - **Shelly or the LSP is outdated:** Shelly updates both components with one command:
 
   ```sh

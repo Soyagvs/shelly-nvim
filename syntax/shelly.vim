@@ -24,6 +24,9 @@ syntax keyword shellySpecial first last contained
 
 " Built-in commands and predicates.
 syntax keyword shellyCommand shellout shellin ask command call choose log watch wait
+syntax keyword shellyHttpCommand http
+syntax keyword shellyHttpMethod GET POST PUT PATCH DELETE HEAD OPTIONS
+syntax keyword shellyHttpOption headers body timeout maxBytes
 syntax keyword shellyCommand create copy move rename remove read write append prepend files
 syntax match shellyPredicate /\v<(exists|contains|hasArg|matches)>/
 
@@ -59,6 +62,9 @@ syntax match shellyProperty /\v\.\zs[A-Za-z_][A-Za-z0-9_]*/
 highlight default link shellyKeyword Keyword
 highlight default link shellyLogic Operator
 highlight default link shellyCommand Function
+highlight default link shellyHttpCommand Function
+highlight default link shellyHttpMethod Keyword
+highlight default link shellyHttpOption Label
 highlight default link shellyPredicate Function
 highlight default link shellyHelper Function
 highlight default link shellyFunction Function

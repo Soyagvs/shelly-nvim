@@ -2,6 +2,56 @@ local M = {}
 
 local warned_missing = false
 
+local config = {
+  cmd = { "shelly-lsp" },
+  root_markers = { "Shelly.toml", ".git" },
+}
+
+local function project_root(bufnr)
+  local name = vim.api.nvim_buf_get_name(bufnr)
+  local directory = vim.fn.fnamemodify(name, ":p:h")
+
+  if config.root_dir then
+    if type(config.root_dir) == "function" then
+      return config.root_dir(bufnr, directory) or directory
+    end
+    return config.root_dir
+  end
+
+  -- Marker order is significant: prefer Shelly.toml anywhere above the file,
+  -- then fall back to .git, rather than choosing a nearer lower-priority marker.
+  for _, marker in ipairs(config.root_markers) do
+    local candidate_directory = directory
+    while candidate_directory and candidate_directory ~= "" do
+      local candidate = candidate_directory .. "/" .. marker
+      if vim.fn.filereadable(candidate) == 1 or vim.fn.isdirectory(candidate) == 1 then
+        return candidate_directory
+      end
+
+      local parent = vim.fn.fnamemodify(candidate_directory, ":h")
+      if parent == candidate_directory then
+        break
+      end
+      candidate_directory = parent
+    end
+  end
+
+  return vim.fn.fnamemodify(name, ":p:h")
+end
+
+function M.setup(options)
+  options = options or {}
+  if options.cmd ~= nil then
+    config.cmd = options.cmd
+  end
+  if options.root_markers ~= nil then
+    config.root_markers = options.root_markers
+  end
+  if options.root_dir ~= nil then
+    config.root_dir = options.root_dir
+  end
+end
+
 local function warn_missing()
   if not warned_missing then
     warned_missing = true
@@ -28,7 +78,8 @@ function M.start(bufnr)
     return
   end
 
-  if vim.fn.executable("shelly-lsp") ~= 1 then
+  local executable = type(config.cmd) == "table" and config.cmd[1] or nil
+  if type(executable) ~= "string" or vim.fn.executable(executable) ~= 1 then
     warn_missing()
     return
   end
@@ -38,9 +89,9 @@ function M.start(bufnr)
 
   vim.lsp.start({
     name = "shelly-lsp",
-    cmd = { "shelly-lsp" },
+    cmd = config.cmd,
     filetypes = { "shelly" },
-    root_dir = vim.fs.dirname(vim.api.nvim_buf_get_name(bufnr)),
+    root_dir = project_root(bufnr),
   }, { bufnr = bufnr })
 end
 
