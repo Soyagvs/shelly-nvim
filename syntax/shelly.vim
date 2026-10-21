@@ -24,6 +24,10 @@ syntax keyword shellySpecial first last contained
 
 " Built-in commands and predicates.
 syntax keyword shellyCommand shellout shellin ask command call choose log watch wait
+syntax match shellyArchiveCommand /\<archive\>/
+syntax match shellyArchiveSubcommand /\<\(create\|extract\|checksum\|check\)\>/ contained
+syntax match shellyArchiveOption /\<\(from\|into\)\>/ contained
+syntax region shellyArchiveLine start=/\<archive\>/ end=/$/ contains=shellyArchiveCommand,shellyArchiveSubcommand,shellyArchiveOption,shellyComment,shellyString,shellyMultilineString,shellyVariable,shellyConstant keepend
 syntax keyword shellyHttpCommand http
 syntax keyword shellyHttpMethod GET POST PUT PATCH DELETE HEAD OPTIONS
 syntax keyword shellyHttpOption headers body timeout maxBytes
@@ -62,6 +66,9 @@ syntax match shellyProperty /\v\.\zs[A-Za-z_][A-Za-z0-9_]*/
 highlight default link shellyKeyword Keyword
 highlight default link shellyLogic Operator
 highlight default link shellyCommand Function
+highlight default link shellyArchiveCommand Function
+highlight default link shellyArchiveSubcommand Keyword
+highlight default link shellyArchiveOption Label
 highlight default link shellyHttpCommand Function
 highlight default link shellyHttpMethod Keyword
 highlight default link shellyHttpOption Label

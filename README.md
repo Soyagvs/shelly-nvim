@@ -8,7 +8,7 @@ Neovim support for [Shelly](https://github.com/Soyagvs/shelly), including filety
 
 For canonical helper and date-format details, see the [helper documentation](https://github.com/Soyagvs/shelly/blob/main/docs/helpers.md) and [date-formatting documentation](https://github.com/Soyagvs/shelly/blob/main/docs/date-formatting.md).
 
-Syntax highlighting supports the process watcher form `watch <program> <args...> -> $line ... end`, bare `wait`, and HTTP v1 requests with `http`, methods (`GET`, `POST`, `PUT`, `PATCH`, `DELETE`, `HEAD`, `OPTIONS`), and options (`headers`, `body`, `timeout`, `maxBytes`).
+Syntax highlighting supports the process watcher form `watch <program> <args...> -> $line ... end`, bare `wait`, HTTP v1 requests with `http`, methods (`GET`, `POST`, `PUT`, `PATCH`, `DELETE`, `HEAD`, `OPTIONS`), and options (`headers`, `body`, `timeout`, `maxBytes`), plus archive v1 commands (`archive create`, `archive extract`, `archive checksum`, and `archive check`) with the `from` and `into` options.
 
 ```shelly
 watch ping example.com -> $line
