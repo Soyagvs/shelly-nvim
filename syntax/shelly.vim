@@ -28,6 +28,12 @@ syntax match shellyArchiveCommand /\<archive\>/
 syntax match shellyArchiveSubcommand /\<\(create\|extract\|checksum\|check\)\>/ contained
 syntax match shellyArchiveOption /\<\(from\|into\)\>/ contained
 syntax region shellyArchiveLine start=/\<archive\>/ end=/$/ contains=shellyArchiveCommand,shellyArchiveSubcommand,shellyArchiveOption,shellyComment,shellyString,shellyMultilineString,shellyVariable,shellyConstant keepend
+syntax match shellyMockCommand /\<mock\>/ contained
+syntax match shellySecretCommand /\<secret\>/ contained
+syntax match shellyMockTarget /\<\(http\|shellout\|shellin\|command\|call\)\>/ contained
+syntax match shellyMockSubcommand /\<\(get\|returns\)\>/ contained
+syntax region shellyMockLine start=/\<mock\>/ end=/$/ contains=shellyMockCommand,shellyMockTarget,shellyMockSubcommand,shellyComment,shellyString,shellyMultilineString,shellyVariable,shellyConstant keepend
+syntax region shellySecretLine start=/\<secret\>/ end=/$/ contains=shellySecretCommand,shellyMockSubcommand,shellyComment,shellyString,shellyMultilineString,shellyVariable,shellyConstant keepend
 syntax keyword shellyHttpCommand http
 syntax keyword shellyHttpMethod GET POST PUT PATCH DELETE HEAD OPTIONS
 syntax keyword shellyHttpOption headers body timeout maxBytes
@@ -69,6 +75,10 @@ highlight default link shellyCommand Function
 highlight default link shellyArchiveCommand Function
 highlight default link shellyArchiveSubcommand Keyword
 highlight default link shellyArchiveOption Label
+highlight default link shellyMockCommand Function
+highlight default link shellySecretCommand Function
+highlight default link shellyMockTarget Keyword
+highlight default link shellyMockSubcommand Label
 highlight default link shellyHttpCommand Function
 highlight default link shellyHttpMethod Keyword
 highlight default link shellyHttpOption Label
