@@ -1,7 +1,17 @@
 <img width="2056" height="765" alt="Shelly_ Cuervo Neón para Neovim" src="https://github.com/user-attachments/assets/ad2e24e4-f726-4f7c-af2e-cbb0f38c7b86" />
 
-[![Release](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/Soyagvs/shelly-nvim/main/.github/badges/release.json&style=flat-square)](https://github.com/Soyagvs/shelly-nvim/releases)
-[![Downloads](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/Soyagvs/shelly-nvim/main/.github/badges/downloads.json&style=flat-square)](https://github.com/Soyagvs/shelly-nvim/releases)
+<p align="center">
+  <a href="https://github.com/Soyagvs/shelly-nvim/releases"><img src="https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/Soyagvs/shelly-nvim/main/.github/badges/release.json&style=flat-square" alt="Release"></a>
+  <a href="https://github.com/Soyagvs/shelly-nvim/releases"><img src="https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/Soyagvs/shelly-nvim/main/.github/badges/downloads.json&style=flat-square" alt="Downloads"></a>
+</p>
+
+<p align="center">
+  <a href="https://github.com/Soyagvs/shelly/releases">Shelly releases</a> ·
+  <a href="https://github.com/Soyagvs/shelly/blob/main/docs/lsp.md">LSP guide</a> ·
+  <a href="https://github.com/Soyagvs/shelly-vscode">VS Code integration</a>
+</p>
+
+<hr>
 
 # shelly-nvim
 
