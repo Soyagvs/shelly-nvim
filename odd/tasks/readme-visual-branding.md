@@ -17,4 +17,5 @@
   - Evidence: independent verifier confirmed both hero images, release/download endpoint URLs, and release links; `git diff --check` passed in both repositories.
 
 ## Evidence
-- No implementation commits yet (commit/push not requested for this change).
+- `4a438d6 docs: refresh README branding` — shelly-nvim README, badges, and task record.
+- `6176ff8 docs: refresh README branding` — shelly-vscode README and badges; rebased over current release metadata.
