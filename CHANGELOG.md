@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.4.0]
+
+### Added
+
+- Add syntax highlighting and documentation for Shelly `httpPages`, `maxPages`, and `maxTotalBytes`.
+
 ## [0.3.0]
 
 ### Added
@@ -33,6 +39,7 @@
 - Highlight the `matches` predicate.
 - Document that recursive `**` file-glob diagnostics, completion, and validation are provided by `shelly-lsp`.
 
+[0.4.0]: https://github.com/Soyagvs/shelly-nvim/releases/tag/v0.4.0
 [0.3.0]: https://github.com/Soyagvs/shelly-nvim/releases/tag/v0.3.0
 [0.2.0]: https://github.com/Soyagvs/shelly-nvim/releases/tag/v0.2.0
 [0.1.4]: https://github.com/Soyagvs/shelly-nvim/releases/tag/v0.1.4

@@ -34,9 +34,9 @@ syntax match shellyMockTarget /\<\(http\|shellout\|shellin\|command\|call\)\>/ c
 syntax match shellyMockSubcommand /\<\(get\|returns\)\>/ contained
 syntax region shellyMockLine start=/\<mock\>/ end=/$/ contains=shellyMockCommand,shellyMockTarget,shellyMockSubcommand,shellyComment,shellyString,shellyMultilineString,shellyVariable,shellyConstant keepend
 syntax region shellySecretLine start=/\<secret\>/ end=/$/ contains=shellySecretCommand,shellyMockSubcommand,shellyComment,shellyString,shellyMultilineString,shellyVariable,shellyConstant keepend
-syntax keyword shellyHttpCommand http
+syntax keyword shellyHttpCommand http httpPages
 syntax keyword shellyHttpMethod GET POST PUT PATCH DELETE HEAD OPTIONS
-syntax keyword shellyHttpOption headers body timeout maxBytes
+syntax keyword shellyHttpOption headers body timeout maxBytes maxPages maxTotalBytes
 syntax keyword shellyCommand create copy move rename remove read write append prepend files
 syntax match shellyPredicate /\v<(exists|contains|hasArg|matches)>/
 
