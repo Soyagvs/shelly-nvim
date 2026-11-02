@@ -25,11 +25,16 @@ jobs:
           REPOSITORY: ${{ github.repository }}
         run: |
           release_json="$(gh api "repos/${REPOSITORY}/releases/latest" 2>/dev/null || true)"
+          releases_json="$(gh api --paginate --slurp "repos/${REPOSITORY}/releases" 2>/dev/null || true)"
           if printf '%s' "$release_json" | jq -e 'type == "object" and (.tag_name | type == "string")' >/dev/null 2>&1; then
             tag="$(printf '%s' "$release_json" | jq -r '.tag_name')"
-            downloads="$(printf '%s' "$release_json" | jq '[.assets[]?.download_count // 0] | add // 0')"
           else
             tag="unreleased"
+          fi
+
+          if printf '%s' "$releases_json" | jq -e 'type == "array"' >/dev/null 2>&1; then
+            downloads="$(printf '%s' "$releases_json" | jq '[.[][]? | select((.draft // false) == false and (.prerelease // false) == false) | .assets[]?.download_count // 0] | add // 0')"
+          else
             downloads="0"
           fi
 
