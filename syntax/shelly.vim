@@ -17,7 +17,7 @@ syntax match shellyInterpolation /\$[A-Za-z][A-Za-z0-9_]*\(\(\.[A-Za-z_][A-Za-z0
 
 " Language structure.
 syntax keyword shellyKeyword if elif else end repeat while for in fn global export import include exit
-syntax keyword shellyKeyword break continue return try catch case when
+syntax keyword shellyKeyword break continue return try catch case when retry pipeline parallel
 syntax keyword shellyLogic and or not
 syntax keyword shellyBoolean true false
 syntax keyword shellySpecial first last contained

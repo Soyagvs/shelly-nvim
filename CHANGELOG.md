@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.5.0]
+
+### Added
+
+- Add syntax highlighting for Shelly structured automation keywords: `retry`, `pipeline`, and `parallel`.
+
 ## [0.4.0]
 
 ### Added
@@ -39,6 +45,7 @@
 - Highlight the `matches` predicate.
 - Document that recursive `**` file-glob diagnostics, completion, and validation are provided by `shelly-lsp`.
 
+[0.5.0]: https://github.com/Soyagvs/shelly-nvim/releases/tag/v0.5.0
 [0.4.0]: https://github.com/Soyagvs/shelly-nvim/releases/tag/v0.4.0
 [0.3.0]: https://github.com/Soyagvs/shelly-nvim/releases/tag/v0.3.0
 [0.2.0]: https://github.com/Soyagvs/shelly-nvim/releases/tag/v0.2.0
