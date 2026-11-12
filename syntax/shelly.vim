@@ -23,7 +23,8 @@ syntax keyword shellyBoolean true false
 syntax keyword shellySpecial first last contained
 
 " Built-in commands and predicates.
-syntax keyword shellyCommand shellout shellin ask command call choose log watch wait
+syntax keyword shellyCommand shellout shellin ask command call menu log watch wait
+syntax keyword shellyMenuDirective subtitle theme default option hint
 syntax match shellyArchiveCommand /\<archive\>/
 syntax match shellyArchiveSubcommand /\<\(create\|extract\|checksum\|check\)\>/ contained
 syntax match shellyArchiveOption /\<\(from\|into\)\>/ contained
@@ -72,6 +73,7 @@ syntax match shellyProperty /\v\.\zs[A-Za-z_][A-Za-z0-9_]*/
 highlight default link shellyKeyword Keyword
 highlight default link shellyLogic Operator
 highlight default link shellyCommand Function
+highlight default link shellyMenuDirective Label
 highlight default link shellyArchiveCommand Function
 highlight default link shellyArchiveSubcommand Keyword
 highlight default link shellyArchiveOption Label
