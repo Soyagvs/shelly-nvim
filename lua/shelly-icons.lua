@@ -16,11 +16,15 @@ function M.setup_web_devicons(opts)
   end
 
   local icon = vim.tbl_extend("force", defaults, opts or {})
-  devicons.setup({
-    override_by_extension = {
-      shelly = icon,
-    },
-  })
+  if type(devicons.set_icon) == "function" then
+    devicons.set_icon({ shelly = icon })
+  else
+    devicons.setup({
+      override_by_extension = {
+        shelly = icon,
+      },
+    })
+  end
   return true
 end
 

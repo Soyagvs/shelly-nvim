@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.6.3]
+
+### Fixed
+
+- Register the purple Shelly icon through the live `nvim-web-devicons` API when available.
+
 ## [0.6.2]
 
 ### Documentation
