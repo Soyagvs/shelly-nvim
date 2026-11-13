@@ -15,6 +15,8 @@ vim.api.nvim_buf_set_lines(bufnr, 0, -1, false, {
   '  option "Warm"',
   '  option[red] "Hot"',
   '  shellout ""',
+  'clear',
+  'progress "Syncing" -> $result',
   'choose "legacy"',
 })
 vim.bo.filetype = "shelly"
@@ -51,5 +53,7 @@ assert(group(10, '"Warm"') == "shellyString", "option label should remain a stri
 assert(group(11, '"Hot"') == "shellyString", "explicit option label should remain a string")
 assert(group(12, "shellout") == "shellyCommand", "blank-row shellout should be highlighted as a command")
 assert(group(12, '""') == "shellyString", "blank-row shellout argument should remain a string")
-assert(group(13, "choose") ~= "shellyCommand", "choose should no longer be highlighted as a command")
+assert(group(13, "clear") == "shellyCommand", "clear should be highlighted as a command")
+assert(group(14, "progress") == "shellyCommand", "progress should be highlighted as a command")
+assert(group(15, "choose") ~= "shellyCommand", "choose should no longer be highlighted as a command")
 vim.cmd("qa!")

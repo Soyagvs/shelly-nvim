@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.6.1]
+
+### Added
+
+- Automatically register the purple Shelly file icon when `nvim-web-devicons` is available.
+- Highlight the `clear` and `progress` commands.
+
 ## [0.6.0]
 
 ### Added

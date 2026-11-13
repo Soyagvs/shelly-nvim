@@ -2,10 +2,10 @@ local M = {}
 
 local defaults = {
   -- Terminal Neovim file explorers usually render font glyphs, not SVG images.
-  -- Pick a simple Nerd Font glyph and Shelly black.
+  -- Pick a simple Nerd Font glyph and Shelly purple.
   icon = "󱗆",
-  color = "#000000",
-  cterm_color = "16",
+  color = "#c084fc",
+  cterm_color = "13",
   name = "Shelly",
 }
 

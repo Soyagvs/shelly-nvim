@@ -127,6 +127,8 @@ Then restart Neovim. The same Shelly prerequisite applies: install Shelly's rele
 - [nvim-web-devicons](https://github.com/nvim-tree/nvim-web-devicons) can be installed and configured through its normal `setup()` call.
 - [mini.icons](https://github.com/echasnovski/mini.icons) can be installed and configured through `require("mini.icons").setup()`.
 
+When `nvim-web-devicons` is available, `shelly-nvim` registers its default purple Shelly icon automatically when a Shelly file opens. No user configuration is required. You can still call `require("shelly-icons").setup()` with custom options if you want to override that default.
+
 Icons are optional and are not required for filetype detection or the LSP.
 
 ## Features

@@ -23,7 +23,7 @@ syntax keyword shellyBoolean true false
 syntax keyword shellySpecial first last contained
 
 " Built-in commands and predicates.
-syntax keyword shellyCommand shellout shellin ask command call menu log watch wait
+syntax keyword shellyCommand shellout shellin ask command call clear progress menu log watch wait
 syntax keyword shellyMenuDirective keys numbers letters lower upper option
 syntax match shellyArchiveCommand /\<archive\>/
 syntax match shellyArchiveSubcommand /\<\(create\|extract\|checksum\|check\)\>/ contained
