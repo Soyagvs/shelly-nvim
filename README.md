@@ -19,7 +19,7 @@ Neovim support for [Shelly](https://github.com/Soyagvs/shelly), including filety
 
 For canonical helper and date-format details, see the [helper documentation](https://github.com/Soyagvs/shelly/blob/main/docs/helpers.md) and [date-formatting documentation](https://github.com/Soyagvs/shelly/blob/main/docs/date-formatting.md).
 
-Syntax highlighting supports the process watcher form `watch <program> <args...> -> $line ... end`, bare `wait`, structured automation keywords (`retry`, `pipeline`, and `parallel`), HTTP v1 requests with `http`, HTTP page serving with `httpPages`, methods (`GET`, `POST`, `PUT`, `PATCH`, `DELETE`, `HEAD`, `OPTIONS`), and options (`headers`, `body`, `timeout`, `maxBytes`, `maxPages`, `maxTotalBytes`), plus archive v1 commands (`archive create`, `archive extract`, `archive checksum`, and `archive check`) with the `from` and `into` options.
+Syntax highlighting supports `clear`, `progress "LABEL" -> $result ... end`, the process watcher form `watch <program> <args...> -> $line ... end`, bare `wait`, structured automation keywords (`retry`, `pipeline`, and `parallel`), HTTP v1 requests with `http`, HTTP page serving with `httpPages`, methods (`GET`, `POST`, `PUT`, `PATCH`, `DELETE`, `HEAD`, `OPTIONS`), and options (`headers`, `body`, `timeout`, `maxBytes`, `maxPages`, `maxTotalBytes`), plus archive v1 commands (`archive create`, `archive extract`, `archive checksum`, and `archive check`) with the `from` and `into` options.
 
 Menu highlighting covers the final core forms without validating menu grammar or context:
 
@@ -55,7 +55,7 @@ wait
 
 4. Restart Neovim and open a Shelly file.
 
-You do not need to configure [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig). `shelly-nvim` launches `shelly-lsp` when it is available on `PATH`. The verified shared capabilities are: diagnostics, completion, hover, definition, references, document symbols, workspace symbols, and conservative rename. Validation for Shelly recursive `**` file globs is provided by the server; the plugin does not expand globs itself.
+You do not need to configure [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig). `shelly-nvim` launches `shelly-lsp` when it is available on `PATH`. The verified shared capabilities are: diagnostics, contextual completion, hover, definition, references, document symbols, workspace symbols, and conservative rename. Completion covers Shelly commands and block directives, locally visible declarations and imported exports, result/error properties, HTTP and menu values, `formatDate` tokens, and relative `import`/`include` paths. Validation for Shelly recursive `**` file globs is provided by the server; the plugin does not expand globs itself.
 
 ### Workspace roots
 
