@@ -21,6 +21,16 @@ For canonical helper and date-format details, see the [helper documentation](htt
 
 Syntax highlighting supports the process watcher form `watch <program> <args...> -> $line ... end`, bare `wait`, structured automation keywords (`retry`, `pipeline`, and `parallel`), HTTP v1 requests with `http`, HTTP page serving with `httpPages`, methods (`GET`, `POST`, `PUT`, `PATCH`, `DELETE`, `HEAD`, `OPTIONS`), and options (`headers`, `body`, `timeout`, `maxBytes`, `maxPages`, `maxTotalBytes`), plus archive v1 commands (`archive create`, `archive extract`, `archive checksum`, and `archive check`) with the `from` and `into` options.
 
+Menu highlighting covers the final core forms without validating menu grammar or context:
+
+```shelly
+menu "Choose a color"
+  keys letters lower
+  option "Warm"
+  option[red] "Hot"
+  shellout ""
+```
+
 ```shelly
 watch ping example.com -> $line
   log $line

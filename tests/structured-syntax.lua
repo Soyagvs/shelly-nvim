@@ -9,8 +9,12 @@ vim.api.nvim_buf_set_lines(bufnr, 0, -1, false, {
   '"retry pipeline parallel"',
   '# retry pipeline parallel #',
   'menu "Choose a color"',
-  '  subtitle "Colors" theme dark default red option red hint "Warm"',
-  '  option blue hint "Cool"',
+  '  keys numbers',
+  '  keys letters lower',
+  '  keys letters upper',
+  '  option "Warm"',
+  '  option[red] "Hot"',
+  '  shellout ""',
   'choose "legacy"',
 })
 vim.bo.filetype = "shelly"
@@ -29,9 +33,23 @@ end
 assert(group(4, "retry") == "shellyString", "keywords in strings should remain strings")
 assert(group(5, "retry") == "shellyComment", "keywords in comments should remain comments")
 assert(group(6, "menu") == "shellyCommand", "menu should be highlighted as a command")
-for _, directive in ipairs({ "subtitle", "theme", "default", "option", "hint" }) do
-  assert(group(7, directive) == "shellyMenuDirective", directive .. " should be highlighted as a menu directive")
+for _, entry in ipairs({
+  { 7, "keys" },
+  { 7, "numbers" },
+  { 8, "keys" },
+  { 8, "letters" },
+  { 8, "lower" },
+  { 9, "keys" },
+  { 9, "letters" },
+  { 9, "upper" },
+  { 10, "option" },
+  { 11, "option" },
+}) do
+  assert(group(entry[1], entry[2]) == "shellyMenuDirective", entry[2] .. " should be highlighted as a menu directive")
 end
-assert(group(8, "option") == "shellyMenuDirective", "option should be highlighted as a menu directive")
-assert(group(9, "choose") ~= "shellyCommand", "choose should no longer be highlighted as a command")
+assert(group(10, '"Warm"') == "shellyString", "option label should remain a string")
+assert(group(11, '"Hot"') == "shellyString", "explicit option label should remain a string")
+assert(group(12, "shellout") == "shellyCommand", "blank-row shellout should be highlighted as a command")
+assert(group(12, '""') == "shellyString", "blank-row shellout argument should remain a string")
+assert(group(13, "choose") ~= "shellyCommand", "choose should no longer be highlighted as a command")
 vim.cmd("qa!")

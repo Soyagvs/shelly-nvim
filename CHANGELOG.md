@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.6.0]
+
+### Added
+
+- Highlight final Shelly menu forms: key modes, keyed or unkeyed options, and blank shellout rows.
+- Remove obsolete menu layout directives from syntax highlighting.
+
 ## [0.5.0]
 
 ### Added
@@ -45,6 +52,7 @@
 - Highlight the `matches` predicate.
 - Document that recursive `**` file-glob diagnostics, completion, and validation are provided by `shelly-lsp`.
 
+[0.6.0]: https://github.com/Soyagvs/shelly-nvim/releases/tag/v0.6.0
 [0.5.0]: https://github.com/Soyagvs/shelly-nvim/releases/tag/v0.5.0
 [0.4.0]: https://github.com/Soyagvs/shelly-nvim/releases/tag/v0.4.0
 [0.3.0]: https://github.com/Soyagvs/shelly-nvim/releases/tag/v0.3.0

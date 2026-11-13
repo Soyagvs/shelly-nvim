@@ -24,7 +24,7 @@ syntax keyword shellySpecial first last contained
 
 " Built-in commands and predicates.
 syntax keyword shellyCommand shellout shellin ask command call menu log watch wait
-syntax keyword shellyMenuDirective subtitle theme default option hint
+syntax keyword shellyMenuDirective keys numbers letters lower upper option
 syntax match shellyArchiveCommand /\<archive\>/
 syntax match shellyArchiveSubcommand /\<\(create\|extract\|checksum\|check\)\>/ contained
 syntax match shellyArchiveOption /\<\(from\|into\)\>/ contained
@@ -47,8 +47,8 @@ syntax match shellyRegexLiteral /\/\%(\[[^]]*\]\|\\.\|[^\\\/[]\)*\//
 
 " Standard helpers.
 syntax keyword shellyHelper arg args
-syntax keyword shellyHelper trim lower upper replace split startsWith endsWith
-syntax keyword shellyHelper len join sort reverse unique keys values
+syntax keyword shellyHelper trim replace split startsWith endsWith
+syntax keyword shellyHelper len join sort reverse unique values
 syntax keyword shellyHelper toNumber toString isEmpty isNumber isText isList isDict
 syntax keyword shellyHelper basename dirname extension withoutExtension
 syntax keyword shellyHelper isFile isDir tempFile tempDir size
@@ -69,6 +69,9 @@ syntax match shellyListSelector /\[[^\]]*\]/ contains=shellyVariable,shellyConst
 " Highlight dictionary keys in object literals and dotted paths.
 syntax match shellyDictKey /\v<[A-Za-z_][A-Za-z0-9_-]*\ze\s*:/
 syntax match shellyProperty /\v\.\zs[A-Za-z_][A-Za-z0-9_]*/
+
+" Final menu words are highlighted without claiming grammar or context validation.
+syntax match shellyMenuDirective /\<\(keys\|numbers\|letters\|lower\|upper\|option\)\>/
 
 highlight default link shellyKeyword Keyword
 highlight default link shellyLogic Operator
