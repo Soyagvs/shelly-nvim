@@ -122,14 +122,9 @@ Then restart Neovim. The same Shelly prerequisite applies: install Shelly's rele
 
 ## Optional icons
 
-`shelly-nvim` does not bundle an SVG, icon font, or icon set. If you already use an icon provider, configure it separately according to that provider's documentation:
+`shelly-nvim` automatically registers its default purple Shelly icon for [nvim-web-devicons](https://github.com/nvim-tree/nvim-web-devicons) and [mini.icons](https://github.com/echasnovski/mini.icons) before file explorers render. No Shelly-specific icon configuration is required.
 
-- [nvim-web-devicons](https://github.com/nvim-tree/nvim-web-devicons) can be installed and configured through its normal `setup()` call.
-- [mini.icons](https://github.com/echasnovski/mini.icons) can be installed and configured through `require("mini.icons").setup()`.
-
-When `nvim-web-devicons` is available, `shelly-nvim` registers its default purple Shelly icon automatically when a Shelly file opens. No user configuration is required. You can still call `require("shelly-icons").setup()` with custom options if you want to override that default.
-
-Icons are optional and are not required for filetype detection or the LSP.
+An icon provider and a font containing its glyphs remain necessary because Neovim itself does not draw file icons. Icons are optional and are not required for filetype detection or the LSP.
 
 ## Features
 
