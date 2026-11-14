@@ -53,7 +53,7 @@ function M.setup(opts)
     did_setup = did_setup or ok
   end
 
-  if opts.mini_icons then
+  if opts.mini_icons ~= false then
     local ok = M.setup_mini_icons(opts.icon)
     did_setup = did_setup or ok
   end

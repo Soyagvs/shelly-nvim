@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.6.4]
+
+### Fixed
+
+- Automatically register Shelly's purple icon for both `mini.icons` and `nvim-web-devicons` before file explorers render.
+
 ## [0.6.3]
 
 ### Fixed

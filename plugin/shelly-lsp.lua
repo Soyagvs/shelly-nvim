@@ -3,11 +3,17 @@ if vim.g.loaded_shelly_lsp then
 end
 vim.g.loaded_shelly_lsp = true
 
+local function setup_icons()
+  require("shelly-icons").setup()
+end
+
+setup_icons()
+vim.schedule(setup_icons)
+
 vim.api.nvim_create_autocmd("FileType", {
   pattern = "shelly",
   callback = function(args)
-    -- Register Shelly's default purple icon when an optional provider is available.
-    require("shelly-icons").setup()
+    setup_icons()
     require("shelly.lsp").start(args.buf)
   end,
 })
