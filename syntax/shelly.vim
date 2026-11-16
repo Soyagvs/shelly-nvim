@@ -16,7 +16,7 @@ syntax match shellyInterpolation /\$\$[A-Z][A-Z0-9_]*/ contained
 syntax match shellyInterpolation /\$[A-Za-z][A-Za-z0-9_]*\(\(\.[A-Za-z_][A-Za-z0-9_]*\)\|\(\[[^\]]*\]\)\)*/ contained
 
 " Language structure.
-syntax keyword shellyKeyword if elif else end repeat while for in fn global export import include exit
+syntax keyword shellyKeyword if elif else end repeat while for in fn global export import include exit measure
 syntax keyword shellyKeyword break continue return try catch case when retry pipeline parallel
 syntax keyword shellyKeyword table column row footer border
 syntax keyword shellyLogic and or not

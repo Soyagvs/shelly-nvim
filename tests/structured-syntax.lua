@@ -82,4 +82,33 @@ for _, entry in ipairs({ { 16, "ascii" }, { 20, "unicode" }, { 21, "rounded" } }
 end
 assert(group(22, "table") == "shellyString", "table words in strings should remain strings")
 assert(group(23, "table") == "shellyComment", "table words in comments should remain comments")
+
+vim.api.nvim_buf_set_lines(bufnr, 24, -1, false, {
+  'measure -> $milliseconds',
+  '  log "measure table end $milliseconds"',
+  '  # measure table end $milliseconds #',
+  '  table ascii',
+  '    column "Elapsed"',
+  '    row "$milliseconds"',
+  '  end',
+  'end',
+})
+assert(group(25, "measure") == "shellyKeyword", "measure should be highlighted as a keyword")
+assert(group(25, "->") == "shellyOperator", "measure arrow should be highlighted as an operator")
+assert(group(25, "$milliseconds") == "shellyVariable", "measure output should be highlighted as a variable")
+assert(group(26, "measure") == "shellyString", "measure words in strings should remain strings")
+assert(group(27, "measure") == "shellyComment", "measure words in comments should remain comments")
+assert(group(28, "table") == "shellyKeyword", "table should remain a keyword inside measure")
+assert(group(29, "column") == "shellyKeyword", "column should remain a table keyword inside measure")
+assert(group(30, "row") == "shellyKeyword", "row should remain a table keyword inside measure")
+
+vim.cmd("set shiftwidth=2")
+vim.cmd("set runtimepath^=" .. vim.fn.getcwd())
+vim.cmd("filetype indent on")
+vim.bo.filetype = "shelly"
+vim.cmd("runtime! indent/shelly.vim")
+assert(vim.fn.GetShellyIndent(26) == 2, "measure body should indent")
+assert(vim.fn.GetShellyIndent(29) == 4, "table body should nest inside measure")
+assert(vim.fn.GetShellyIndent(31) == 2, "table end should dedent")
+assert(vim.fn.GetShellyIndent(32) == 0, "measure end should dedent")
 vim.cmd("qa!")
