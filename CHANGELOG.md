@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.8.0]
+
+### Added
+
+- Highlight and indent Shelly `measure` blocks and composable table control flow.
+
 ## [0.7.0]
 
 ### Added
