@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.7.0]
+
+### Added
+
+- Highlight Shelly table blocks, columns, rows, footers, border directives, and border styles.
+
 ## [0.6.4]
 
 ### Fixed
