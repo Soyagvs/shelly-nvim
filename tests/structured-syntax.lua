@@ -56,4 +56,30 @@ assert(group(12, '""') == "shellyString", "blank-row shellout argument should re
 assert(group(13, "clear") == "shellyCommand", "clear should be highlighted as a command")
 assert(group(14, "progress") == "shellyCommand", "progress should be highlighted as a command")
 assert(group(15, "choose") ~= "shellyCommand", "choose should no longer be highlighted as a command")
+
+vim.api.nvim_buf_set_lines(bufnr, 15, -1, false, {
+  'table ascii',
+  '  column "Name"',
+  '  row "Ada"',
+  '  footer "Total"',
+  '  border unicode',
+  '  border rounded',
+  '  column "table column row footer border ascii unicode rounded"',
+  '  # table column row footer border ascii unicode rounded #',
+  'end',
+})
+for _, entry in ipairs({
+  { 16, "table" },
+  { 17, "column" },
+  { 18, "row" },
+  { 19, "footer" },
+  { 20, "border" },
+}) do
+  assert(group(entry[1], entry[2]) == "shellyKeyword", entry[2] .. " should be highlighted as a table keyword")
+end
+for _, entry in ipairs({ { 16, "ascii" }, { 20, "unicode" }, { 21, "rounded" } }) do
+  assert(group(entry[1], entry[2]) == "shellyConstant", entry[2] .. " should be highlighted as a border value")
+end
+assert(group(22, "table") == "shellyString", "table words in strings should remain strings")
+assert(group(23, "table") == "shellyComment", "table words in comments should remain comments")
 vim.cmd("qa!")
