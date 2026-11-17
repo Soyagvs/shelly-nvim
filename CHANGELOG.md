@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.9.0]
+
+### Added
+
+- Highlight and indent universal block output destinations (`-> $variable`).
+
 ## [0.8.0]
 
 ### Added
