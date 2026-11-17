@@ -102,6 +102,31 @@ assert(group(28, "table") == "shellyKeyword", "table should remain a keyword ins
 assert(group(29, "column") == "shellyKeyword", "column should remain a table keyword inside measure")
 assert(group(30, "row") == "shellyKeyword", "row should remain a table keyword inside measure")
 
+vim.api.nvim_buf_set_lines(bufnr, 32, -1, false, {
+  'table -> $table_result',
+  '  if $ready -> $if_result',
+  '    for $item in $items -> $for_result',
+  '      fn collect -> $fn_result',
+  '        return $item',
+  '      end',
+  '    end',
+  '  end',
+  'end',
+  '"table -> $string_result"',
+  '# if $ready -> $comment_result #',
+})
+for _, entry in ipairs({
+  { 33, "$table_result" },
+  { 34, "$if_result" },
+  { 35, "$for_result" },
+  { 36, "$fn_result" },
+}) do
+  assert(group(entry[1], entry[2]) == "shellyVariable", entry[2] .. " should be highlighted as a block destination")
+  assert(group(entry[1], "->") == "shellyOperator", entry[2] .. " arrow should remain an operator")
+end
+assert(group(42, "table") == "shellyString", "block destinations in strings should remain strings")
+assert(group(43, "if") == "shellyComment", "block destinations in comments should remain comments")
+
 vim.cmd("set shiftwidth=2")
 vim.cmd("set runtimepath^=" .. vim.fn.getcwd())
 vim.cmd("filetype indent on")
@@ -111,4 +136,8 @@ assert(vim.fn.GetShellyIndent(26) == 2, "measure body should indent")
 assert(vim.fn.GetShellyIndent(29) == 4, "table body should nest inside measure")
 assert(vim.fn.GetShellyIndent(31) == 2, "table end should dedent")
 assert(vim.fn.GetShellyIndent(32) == 0, "measure end should dedent")
+assert(vim.fn.GetShellyIndent(34) == 2, "table block destination should indent")
+assert(vim.fn.GetShellyIndent(35) == 4, "if block destination should indent")
+assert(vim.fn.GetShellyIndent(36) == 6, "for block destination should indent")
+assert(vim.fn.GetShellyIndent(37) == 8, "function block destination should indent")
 vim.cmd("qa!")

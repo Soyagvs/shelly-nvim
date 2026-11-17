@@ -24,5 +24,8 @@ function! GetShellyIndent(...) abort
   if previous_text =~ '^\s*\(if\|elif\|else\|repeat\|while\|for\|fn\|try\|catch\|case\|when\|retry\|pipeline\|parallel\|table\|measure\)\>'
     return indent + shiftwidth()
   endif
+  if previous_text =~ '^\s*\(table\|if\|for\|fn\)\>.*->\s*\$[A-Za-z][A-Za-z0-9_]*\s*$'
+    return indent + shiftwidth()
+  endif
   return indent
 endfunction
