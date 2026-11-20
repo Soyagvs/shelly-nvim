@@ -9,23 +9,29 @@ syntax case match
 syntax region shellyComment start=/#/ end=/#/ contains=NONE
 
 " Strings: ordinary quoted strings and triple-backtick multiline strings.
-syntax region shellyString start=/"/ skip=/\\"/ end=/"/ contains=shellyInterpolation
-syntax region shellyMultilineString start=/```/ end=/```/ contains=shellyInterpolation keepend
+syntax region shellyString start=/"/ skip=/\\"/ end=/"/ contains=shellyInterpolation,shellyInvalidIdentifier
+syntax region shellyMultilineString start=/```/ end=/```/ contains=shellyInterpolation,shellyInvalidIdentifier keepend
 
-syntax match shellyInterpolation /\$\$[A-Z][A-Z0-9_]*/ contained
-syntax match shellyInterpolation /\$[A-Za-z][A-Za-z0-9_]*\(\(\.[A-Za-z_][A-Za-z0-9_]*\)\|\(\[[^\]]*\]\)\)*/ contained
+syntax match shellyInvalidIdentifier /\$\$[A-Za-z][A-Za-z0-9_]*/ contained
+syntax match shellyInvalidIdentifier /\$[a-z][a-z0-9_]*[A-Z][A-Za-z0-9_]*/ contained
+syntax match shellyInvalidIdentifier /\$[A-Z][A-Za-z0-9_]*[a-z][A-Za-z0-9_]*/ contained
+syntax match shellyInterpolation /\$\([a-z][a-z0-9_]*\|[A-Z][A-Z0-9_]*\)\(\(\.[A-Za-z_][A-Za-z0-9_]*\)\|\(\[[^\]]*\]\)\)*/ contained
+syntax match shellyInvalidIdentifier /\$\$[A-Za-z][A-Za-z0-9_]*/ contained
+syntax match shellyInvalidIdentifier /\$[a-z][a-z0-9_]*[A-Z][A-Za-z0-9_]*/ contained
+syntax match shellyInvalidIdentifier /\$[A-Z][A-Za-z0-9_]*[a-z][A-Za-z0-9_]*/ contained
 
 " Language structure.
 syntax keyword shellyKeyword if elif else end repeat while for in fn global export import include exit measure
-syntax keyword shellyKeyword break continue return try catch case when retry pipeline parallel
-syntax keyword shellyKeyword table column row footer border
+syntax keyword shellyKeyword break continue return try catch case when retry pipeline parallel timeout defer watch
+syntax keyword shellyKeyword table column row footer border align left center right
 syntax keyword shellyLogic and or not
 syntax keyword shellyBoolean true false
 syntax keyword shellyConstant ascii unicode rounded
 syntax keyword shellySpecial first last contained
 
 " Built-in commands and predicates.
-syntax keyword shellyCommand shellout shellin ask command call clear progress menu log watch wait
+syntax keyword shellyCommand shellout shellin ask command call clear progress menu log watch wait files
+syntax keyword shellyCommand archive mock secret http httpPages
 syntax keyword shellyMenuDirective keys numbers letters lower upper option
 syntax match shellyArchiveCommand /\<archive\>/
 syntax match shellyArchiveSubcommand /\<\(create\|extract\|checksum\|check\)\>/ contained
@@ -48,21 +54,21 @@ syntax match shellyPredicate /\v<(exists|contains|hasArg|matches)>/
 syntax match shellyRegexLiteral /\/\%(\[[^]]*\]\|\\.\|[^\\\/[]\)*\//
 
 " Standard helpers.
-syntax keyword shellyHelper arg args
-syntax keyword shellyHelper trim replace split startsWith endsWith
-syntax keyword shellyHelper len join sort reverse unique values
-syntax keyword shellyHelper toNumber toString isEmpty isNumber isText isList isDict
-syntax keyword shellyHelper basename dirname extension withoutExtension
-syntax keyword shellyHelper isFile isDir tempFile tempDir size
-syntax keyword shellyHelper now today random randomInt jsonParse jsonStringify substring padLeft padRight formatDate
+syntax keyword shellyHelper trim lower upper replace substring padLeft padRight formatDate split startsWith endsWith
+syntax keyword shellyHelper len join sort reverse unique toNumber toString isEmpty isNumber isText isList isDict keys values
+syntax keyword shellyHelper jsonParse jsonStringify pathJoin basename dirname extension withoutExtension
+syntax keyword shellyHelper now timestamp today commandExists which random randomInt
 
 " Identifiers and literals.
 syntax match shellyFunction /\v<fn\s+\zs[A-Za-z_][A-Za-z0-9_]*/
 syntax match shellyCall /\v<call\s+\zs[A-Za-z_][A-Za-z0-9_]*/
-syntax match shellyVariable /\$[A-Za-z][A-Za-z0-9_]*\(\(\.[A-Za-z_][A-Za-z0-9_]*\)\|\(\[[^\]]*\]\)\)*/
-syntax match shellyConstant /\$\$[A-Z][A-Z0-9_]*/
+syntax match shellyVariable /\$[a-z][a-z0-9_]*/
+syntax match shellyConstant /\$[A-Z][A-Z0-9_]*/
+syntax match shellyInvalidIdentifier /\$\$[A-Za-z][A-Za-z0-9_]*/
+syntax match shellyInvalidIdentifier /\$[a-z][a-z0-9_]*[A-Z][A-Za-z0-9_]*/
+syntax match shellyInvalidIdentifier /\$[A-Z][A-Za-z0-9_]*[a-z][A-Za-z0-9_]*/
 syntax match shellyNumber /\v<[-+]?[0-9]+(\.[0-9]+)?>/
-syntax match shellyOperator /->\|==\|!=\|>=\|<=\|>\|<\|+\|-\|*\|\/\|=\|\.\./
+syntax match shellyOperator /->\|==\|!=\|>=\|<=\|>\|<\|+\|-\|\*\|\/\|=\|\.\./
 syntax match shellyDelimiter /[{}()[\],:]/
 
 " Keep selectors visible without swallowing nested expressions completely.
@@ -73,7 +79,7 @@ syntax match shellyDictKey /\v<[A-Za-z_][A-Za-z0-9_-]*\ze\s*:/
 syntax match shellyProperty /\v\.\zs[A-Za-z_][A-Za-z0-9_]*/
 
 " Final menu words are highlighted without claiming grammar or context validation.
-syntax match shellyMenuDirective /\<\(keys\|numbers\|letters\|lower\|upper\|option\)\>/
+syntax keyword shellyMenuDirective keys numbers letters lower upper option
 
 highlight default link shellyKeyword Keyword
 highlight default link shellyLogic Operator
@@ -103,6 +109,7 @@ highlight default link shellyString String
 highlight default link shellyRegexLiteral String
 highlight default link shellyMultilineString String
 highlight default link shellyInterpolation Special
+highlight default link shellyInvalidIdentifier Error
 highlight default link shellyListSelector Special
 highlight default link shellyDictKey Label
 highlight default link shellyProperty Identifier
